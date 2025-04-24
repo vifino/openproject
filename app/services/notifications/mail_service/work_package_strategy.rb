@@ -29,12 +29,19 @@
 module Notifications::MailService::WorkPackageStrategy
   class << self
     def send_mail(notification)
-      return unless notification.reason_mentioned?
+      return unless notification.reason_mentioned? || notification.reason_assigned?
       return unless notification.recipient.pref.immediate_reminders[:mentioned]
 
-      WorkPackageMailer
-        .mentioned(notification.recipient, notification.journal)
-        .deliver_later
+
+      if notification.reason_mentioned?
+        WorkPackageMailer
+          .mentioned(notification.recipient, notification.journal)
+          .deliver_later
+      elsif notification.reason_assigned?
+        WorkPackageMailer
+          .assigned(notification.recipient, notification.journal)
+          .deliver_later
+      end
     end
   end
 end

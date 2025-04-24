@@ -1,0 +1,5 @@
+<%= I18n.t(:"mail.salutation", user: @user.firstname) %>
+<%= I18n.t(:"mail.work_packages.assigned_by", user: @journal.user).to_s %>
+<%= "-" * 100 %>
+<%= render partial: "work_package_details", locals: { work_package: @work_package } %>
+<%= t(:text_latest_note, note: last_work_package_note(@work_package)) %>

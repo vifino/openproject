@@ -3210,6 +3210,8 @@ en:
       link_name_type: "New %{type_name}"
   mail:
     actions: "Actions"
+    assigned:
+      subject: "%{user_name} updated assigned work package #%{id} - %{subject}"
     digests:
       including_mention_singular: "including a mention"
       including_mention_plural: "including %{number_mentioned} mentions"
@@ -3222,6 +3224,7 @@ en:
     notification:
       center: "To notification center"
       see_in_center: "See comment in notification center"
+      view_work_package: "View work package"
       settings: "Change email settings"
     salutation: "Hello %{user}"
     salutation_full_name: "Full name"
@@ -3230,6 +3233,7 @@ en:
       login_to_see_all: "Log in to see all notifications."
       mentioned: "You have been <b>mentioned in a comment</b>"
       mentioned_by: "%{user} mentioned you in a comment"
+      assigned_by: "%{user} updated an assigned work package"
       more_to_see:
         one: "There is 1 more work package with notifications."
         other: "There are %{count} more work packages with notifications."

@@ -51,6 +51,28 @@ class WorkPackageMailer < ApplicationMailer
     end
   end
 
+  def assigned(recipient, journal)
+    @user = recipient
+    @work_package = journal.journable
+    @journal = journal
+
+    author = journal.user
+
+    User.execute_as author do
+      set_work_package_headers(@work_package)
+
+      message_id journal, recipient
+      references journal
+
+      send_localized_mail(recipient) do
+        I18n.t(:"mail.assigned.subject",
+               user_name: author.name,
+               id: @work_package.id,
+               subject: @work_package.subject)
+      end
+    end
+  end
+
   def watcher_changed(work_package, user, watcher_changer, action)
     User.execute_as user do
       @work_package = work_package
